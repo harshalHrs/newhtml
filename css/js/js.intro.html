@@ -1,0 +1,54 @@
+<!--//console.log(num1);//undefined = Hosting
+// var num1 =10;
+// console.log(num1);
+//num1 = 15; // NO Error
+//console.log(num1);
+/*
+1) access the variable befor intialization. no Error
+2) Can re-assign the values(mutable)
+3) it has a functional goles.-->
+
+<!-- console.log(num2); // uncaught ReferenceError: Cannot access 'num2'befor intialization
+       // let num2 = 20;
+    // console.log(num2;
+    //(num2)-->
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+
+      <!-- Internal JS code -->
+      <script type="text/Javascript">
+         //javascript code in head
+         // here we will add the functionality
+
+         function displayWelcomeMessage()  {
+            alert("Welcome to Javascript  !!");
+            
+         }
+
+
+         function login() {
+            // I can send the Username and password to the server
+            
+         }
+
+      </script>
+      <!-- External JS -->
+      <script src="js.01.js"></script>
+    </head>
+    <body>
+      <div style="background-color: red;"></div>
+      <button onclick="displayWelcomeMessage()">Click Me!!</button>
+      <button onclick="externalMessage()">External Js!!</button>
+      
+
+      <input type="text" placeholder="Username">
+      <input type="Password" placeholder="Password">
+      
+
+      <button onclick="login()">Log in</button>
+    </body>
+    </html>
