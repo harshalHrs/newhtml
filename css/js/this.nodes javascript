@@ -1,0 +1,328 @@
+//This function in Javascript// comiite use in ctrl+/
+//this is keyword is uesd to refer to the class and this keyword is access to the  windows
+1)this.name = 'Advance Javascript';
+const display = () => {
+  console.log(this.name); // Advance Javascript
+  console.log(name); // Advance Javascript
+}
+display ();
+ 
+
+2)this.table = "house.table";
+this.garage={
+table: "garage table"
+}
+console.log(this.table); // house table
+console.log(table); // house table
+console.log(this.garage.table); // garage table
+
+
+3)this.table="house table";
+this.garage={
+table: "garage table"
+}
+
+let room ={   // local scope of this space
+table:"room table"
+}
+
+console.log(room.table); // room table
+console.log(this.room.table); // uncuaght typeerror   
+
+4)//Inside  a method of an object-
+
+this.table="House table";
+
+this.garage={
+table:"Grage table",
+clean:function(){
+  console.log('${this.table} cleaned!!');
+}
+}
+let room={
+ table:"Room table",
+ clean:function(){
+  console.log('${this.table} cleaned!!');
+}
+}
+this.garage.clean();
+room.clean();
+
+
+5)//Inside a function
+  
+ this.table = " House table";
+ 
+ const clean = function () {
+    console.log(`${this.table} cleaned !!`);
+ }
+  clean(); // // "House table cleaned !!"
+
+ 6) Inside a class
+   ->this keyword refers to the class itself
+   ->we can access the member of a class using 'this'
+
+ 7) A) // without constructor function
+class myClass {
+
+    // data members
+    name = "Rahul";
+    rollNo = 21;
+    subjects = [
+        "Maths",
+        "S.St.",
+        "Science",
+        "English",
+        "Hindi"
+    ];
+
+    // functionalities
+
+    printName() {
+        console.log(this.name);
+    }
+
+    addSubject(subject) {
+        this.subjects.push(subject);
+        this.printName();
+    }
+
+    getAllSubjects() {
+        return this.subjects;
+    }
+}
+
+// to execute the functionalities of a class create an object of that class
+var myObj = new myClass(); // it creates a new object of the class
+
+console.log(myObj.name); // "Rahul"
+console.log(myObj.rollNo); // 21
+console.log(myObj.subjects); // ["Maths", "S.St.", "Science", "English", "Hindi"]
+myObj.addSubject("React");
+myObj.getAllSubjects(); // ["Maths", "S.St.", "Science", "English", "Hindi", "React"]
+ 
+ B) // With constructor function
+class myClass {
+
+    // data members
+    name;
+    rollNo;
+    subjects = [
+        "Maths",
+        "S.St.",
+        "Science",
+        "English",
+        "Hindi"
+    ];
+
+    // functionalities
+
+    constructor(_name, _rollNo) {
+        this.name = _name;
+        this.rollNo = _rollNo;
+    }
+
+    printName() {
+        console.log(this.name);
+    }
+
+    addSubject(subject) {
+        this.subjects.push(subject);
+        this.printName();
+    }
+
+    getAllSubjects() {
+        return this.subjects;
+    }
+}
+
+var myObj2 = new myClass("Amit", 31);
+console.log(myObj2.name); // "Amit"
+console.log(myObj2.rollNo); // 31
+
+8)  Call Function 
+
+ js can work in strict type checking node
+
+  'use strict' // at the top of our code
+
+  this .table="House table";
+
+  const clean = function() {
+    console.log(`$*{this.table} cleaned !!`);
+  }
+
+  clean(); // uncuaght typeerror: cannot read property 'table' of undefine
+
+clean.call(this);
+  
+  let obj = {
+    table."Obj table"
+  }
+  
+  clean.call(obj);
+
+
+  9)passing parameter in call function
+
+  'use strict' // at a top of our code
+
+  this.table= "House table";   // "House table cleaned by harshal and aniket and farooque  !!"
+
+  const clean = function( name,name2,name3) {
+    console.log(`${this.table} cleaned by ${name} and ${name2} and ${name3}  !!`);
+  }
+ 
+ /*  clean();  */ // Error
+  
+  clean.call(this,"harshal","aniket","farooque");
+  
+  let obj = {
+    table:"Obj table"
+  }
+  
+  clean.call(obj,"aniket");  // "Obj table cleaned by aniket and undefined and undefined  !!"
+
+
+10) /***************** Inner functions *******************/
+
+'use strict'
+
+this.table = "Window table";
+
+const clean = function() {
+    console.log(`${this.table} cleaned !!`);
+
+    const doubleClean = function() {
+        console.log(`${this.table} Double cleaned !!`);
+
+
+        const trippleClean = function() {
+            console.log(`${this.table} Tripple cleaned !!`);
+        }
+
+        trippleClean.call(this);
+    }
+
+    doubleClean.call(this);
+}
+
+clean.call(this);
+
+
+// Use of arrow functions
+
+const clean = () => {
+    console.log(${this.table} cleaned !!);
+
+    const doubleClean = () => {
+        console.log(`${this.table} Double cleaned !!`);
+
+
+        const trippleClean = () => {
+            console.log(`${this.table} Tripple cleaned !!`);
+        }
+
+        trippleClean();
+    }
+
+    doubleClean();
+}
+
+clean();
+
+
+11) /************** Apply function *******************/
+
+'use strict'
+
+this.num = 10;
+
+const sum = (...paramsArray) => {
+  let res = 0;
+  for (let i = 0; i < paramsArray.length; i++) {
+    res += paramsArray[i]
+  }
+  return this.num + res;
+}
+
+var arrayOfParams = [20, 30, 40, 50, 60, 70];
+var result = sum.apply(this, arrayOfParams);
+
+console.log(result);
+
+
+12) // Bind gives us another function which we can execute later
+
+
+'use strict'
+
+this.table = "House Table";
+
+const clean = function(name, name2, name3) {
+    console.log(`${this.table} cleaned by ${name}, ${name2} and ${name3} !!`);
+}
+
+clean.call(this, "Ritvi", "Adesh", "rakesh");  // you get an immediate output, clean function will be immediately executed
+
+var myBindFunction = clean.bind(this, "Ritvi"); // You dont get an immediate output here, clean function will not be executed immediately
+
+myBindFunction("Adesh", "Rakesh"); // clean function will be executed and you get the output
+
+13)////callbacks
+const sum= function (a,b,func) {
+   let s = a + b ;
+   func(s);
+}
+
+const printsum = function(su) {
+   console.log("sum is : " + su);
+}
+
+sum(10,20,printsum);
+
+// sum -> is a higher order function 
+// [rintsum -> is a callback function
+/* Disadantage : it goes into callback hell */]
+
+14)///************* Promise mean  an assurance *************///
+  ///syntax
+
+
+let prom = new promise (function(resolve,reject) {
+     /// you can make an API call
+     ///schedule some line of code
+     //e.g axios() // use it in react 
+});
+
+prom.then(function(result) {
+    
+}).catch(function(error) {
+ 
+});
+
+/***************** Code *///*/*/*/*/*/*//*/*/*/*/*/*/*/*//*//
+
+//// states of a promise:
+//a. Resolved -> when you get a success
+//b. Rejected -> when you get an error
+//c. Pending -> When you are waiting for the response to come
+
+
+let prom = new Promise(function(resolve, reject) {
+  // 1. we can make an API call
+  // 2. We can schedule a code execution
+  console.log("Promise is in Pending state")
+  setTimeout(() => {
+    //console.log("Promise is resolved")
+    //resolve("Education");
+    console.log("Promise is rejected")
+    reject(null);
+  }, 3000);
+});
+
+prom.then(function(result) {
+  console.log("Success value : " + result);
+}).catch(function(error) {
+  console.log("Error value : " + error);
+});
