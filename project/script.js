@@ -9,13 +9,13 @@ const emojis = [
     "🐶", "🐱", "🐭", "🐹", "🐰", "🦊", "🐻", "🐼", "🐨", "🐯",
     "🦁", "🐮", "🐷", "🐽", "🐸", "🐙", "🐵", "🙈", "🙉", "🙊",
     "🐒", "🐔", "🐧", "🐦", "🐤", "🐣", "🐥", "🦆", "🦅", "🦉",
-    "🦇", "🐺", "🐗", "🐴", "🦄", "🐝", "🐛", "🦋", "🐌", "🐞"
+    "🦇", "🐺", "🐗", "🐴", "🦄", "🐝", "🐛", "🦋", "🐌", "🐞","💝"
     // Add more emojis 
   ];
 const generateBtn = document.getElementById("emojiGenerateBtn");
 const emoji = document.querySelector(".emoji");
 
-// generate random number 
+// generate random number array is length
 generateRandomNumber = () => {
     return Math.floor(Math.random()*emojis.length);
 }
